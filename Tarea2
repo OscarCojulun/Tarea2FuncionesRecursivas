@@ -1,0 +1,86 @@
+def convertir_a_binario(numero):
+	if(numero==0):
+		return ""
+	else:
+		return convertir_a_binario(numero//2)+str(numero%2)
+
+
+def contar_digitos(numero):
+    
+    if numero < 10:
+        return 1
+    return 1 + contar_digitos(numero // 10)
+
+import math
+
+def calcular_raiz_cuadrada(numero, estimacion):
+    
+    if math.sqrt(numero) < estimacion:
+        return estimacion - 1
+    else:
+        return calcular_raiz_cuadrada(numero, estimacion + 1)
+
+def raiz_cuadrada_entera(numero):
+    
+    if numero < 0:
+        print("No se puede calcular la raíz cuadrada de un número negativo.")
+    elif numero == 0:
+        return 0
+    else:
+        return calcular_raiz_cuadrada(numero, 1)
+
+
+def convertir_a_decimal(romano):
+    valores = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}
+
+    if len(romano) == 0:
+        return 0
+    
+    elif len(romano) == 1:
+        return valores[romano[0]]
+
+    elif valores[romano[0]] < valores[romano[1]]:
+        return valores[romano[1]] - valores[romano[0]] + convertir_a_decimal(romano[2:])
+    else:
+        return valores[romano[0]] + convertir_a_decimal(romano[1:])
+
+def suma_numeros_enteros(numero):
+    
+    if numero == 0:
+        return 0
+    else:
+        return numero + suma_numeros_enteros(numero - 1)
+
+
+x= 0
+x2= 0
+while (x2<6):
+    print("Opcion 1: Convertir un numero a binario")
+    print("Opcion 2: Contar los digitos de un numero entero")
+    print("Opcion 3: Calcular la raiz cuadrada entera")
+    print("Opcion 4: Convertir a decimal desde numero Romano")
+    print("Opcion 5: Suma de enteros")
+    print("Opcion 6: Salir del programa")
+    x = input("Seleccione el numero de alguna de las anteriores: ")
+    x2 = int(x)
+    if (x2 == 1):
+        numero2 = int(input("Ingrese el numero a convertir en binario: \n"))
+        numero = int(numero2)
+        print("El numero binario de ", numero  ,"es: " , convertir_a_binario(numero), "\n")
+    elif (x2 == 2):
+        numero2 = int(input("Ingrese el numero para contar los digitos: \n"))
+        numero = int(numero2)
+        print("El numero ingresado tiene" ,contar_digitos(numero),"digitos \n")
+    elif (x2 == 3):
+        numero2 = int(input("Ingrese el numero para calcular la raiz cuadrada entera: \n"))
+        numero = int(numero2)
+        print("La raiz cuadrada entera es: ", raiz_cuadrada_entera(numero), "\n")
+    elif (x2 == 4):
+        romano = input("Ingrese el numero romano a convertir a decimal: \n") 
+        print("El numero romano ingresado ", romano ," en decimal es: ", romano_a_decimal(romano) )
+    elif (x2 == 5):
+        numero2 = int(input("Ingrese el numero a sumar desde 0 a el numero ingresado: \n"))
+        numero = int(numero2)
+        print("La suma es hasta el numero : " ,suma_numeros_enteros(numero),"\n")
+    else:
+        print("No se selecciono nada")
